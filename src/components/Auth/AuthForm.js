@@ -1,7 +1,7 @@
-import { useState, useRef, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
-import AuthContext from '../../store/authContext';
-import classes from './AuthForm.module.css';
+import { useState, useRef, useContext } from "react";
+import { useHistory } from "react-router-dom";
+import AuthContext from "../../store/authContext";
+import classes from "./AuthForm.module.css";
 
 const AuthForm = () => {
   const authContext = useContext(AuthContext);
@@ -19,14 +19,14 @@ const AuthForm = () => {
     let url;
     if (isLogin) {
       url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBrwIb5B11iL-nVclB-0ctdCEXfgfZTBbM';
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBrwIb5B11iL-nVclB-0ctdCEXfgfZTBbM";
     } else {
       url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBrwIb5B11iL-nVclB-0ctdCEXfgfZTBbM';
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBrwIb5B11iL-nVclB-0ctdCEXfgfZTBbM";
     }
     fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: enteredEmail,
         password: enteredPassword,
@@ -40,7 +40,7 @@ const AuthForm = () => {
           return res.json();
         } else {
           return res.json().then((data) => {
-            let errorMsg = 'Authentication Failed!';
+            let errorMsg = "Authentication Failed!";
             if (data?.error?.message) {
               errorMsg = data.error.message;
             }
@@ -50,10 +50,10 @@ const AuthForm = () => {
       })
       .then((data) => {
         const remainTime = new Date(
-          new Date().getTime() + +data.expiresIn * 1000,
+          new Date().getTime() + +data.expiresIn * 1000
         );
         authContext.login(data.idToken, remainTime.toISOString());
-        history.replace('/');
+        history.replace("/");
         // console.log(authContext.login(data.idToken));
       })
       .catch((err) => {
@@ -67,19 +67,31 @@ const AuthForm = () => {
 
   return (
     <section className={classes.auth}>
-      <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
+      <h1>{isLogin ? "Login" : "Sign Up"}</h1>
       <form onSubmit={handleSubmit}>
         <div className={classes.control}>
           <label htmlFor="email">Your Email</label>
-          <input type="email" id="email" required ref={emailRef} />
+          <input
+            type="email"
+            id="email"
+            required
+            ref={emailRef}
+            placeholder="reactauth@gmail.com"
+          />
         </div>
         <div className={classes.control}>
           <label htmlFor="password">Your Password</label>
-          <input type="password" id="password" required ref={passwordRef} />
+          <input
+            type="password"
+            id="password"
+            required
+            ref={passwordRef}
+            placeholder="reactauth"
+          />
         </div>
         <div className={classes.actions}>
           {!isLoading ? (
-            <button>{isLogin ? 'Login' : 'Create Account'}</button>
+            <button>{isLogin ? "Login" : "Create Account"}</button>
           ) : (
             <p>Loading...</p>
           )}
@@ -88,7 +100,7 @@ const AuthForm = () => {
             className={classes.toggle}
             onClick={switchAuthModeHandler}
           >
-            {isLogin ? 'Create new account' : 'Login with existing account'}
+            {isLogin ? "Create new account" : "Login with existing account"}
           </button>
         </div>
       </form>
