@@ -66,45 +66,45 @@ const AuthForm = () => {
   };
 
   return (
-    <section className={classes.auth}>
-      <h1>{isLogin ? "Login" : "Sign Up"}</h1>
-      <form onSubmit={handleSubmit}>
-        <div className={classes.control}>
-          <label htmlFor="email">Your Email</label>
-          <input
-            type="email"
-            id="email"
-            required
-            ref={emailRef}
-            placeholder="reactauth@gmail.com"
-          />
-        </div>
-        <div className={classes.control}>
-          <label htmlFor="password">Your Password</label>
-          <input
-            type="password"
-            id="password"
-            required
-            ref={passwordRef}
-            placeholder="reactauth"
-          />
-        </div>
-        <div className={classes.actions}>
-          {!isLoading ? (
-            <button>{isLogin ? "Login" : "Create Account"}</button>
-          ) : (
-            <p>Loading...</p>
-          )}
-          <button
-            type="button"
-            className={classes.toggle}
-            onClick={switchAuthModeHandler}
-          >
-            {isLogin ? "Create new account" : "Login with existing account"}
-          </button>
-        </div>
-      </form>
-    </section>
+      <section className={classes.auth}>
+        <h1>{isLogin ? "Login" : "Sign Up"}</h1>
+        <form onSubmit={handleSubmit}>
+          <div className={classes.control}>
+            <label htmlFor="email">Your Email</label>
+            <input
+              type="email"
+              id="email"
+              required
+              ref={emailRef}
+              placeholder="reactauth@gmail.com"
+            />
+          </div>
+          <div className={classes.control}>
+            <label htmlFor="password">Your Password</label>
+            <input
+              type="password"
+              id="password"
+              required
+              ref={passwordRef}
+              placeholder="reactauth"
+            />
+          </div>
+          <div className={classes.actions}>
+            {!isLoading ? (
+              <button>{isLogin ? "Login" : "Create Account"}</button>
+            ) : (
+              <p>Loading...</p>
+            )}
+            <button
+              type="button"
+              className={classes.toggle}
+              onClick={switchAuthModeHandler}
+            >
+              {isLogin ? "Create new account" : "Login with existing account"}
+            </button>
+          </div>
+        </form>
+      </section>
   );
 };
 
