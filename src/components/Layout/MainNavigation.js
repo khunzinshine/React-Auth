@@ -1,8 +1,8 @@
-import { Link, useHistory } from 'react-router-dom';
-import { useContext } from 'react';
+import { Link, useHistory } from "react-router-dom";
+import { useContext } from "react";
 
-import classes from './MainNavigation.module.css';
-import AuthContext from '../../store/authContext';
+import classes from "./MainNavigation.module.css";
+import AuthContext from "../../store/authContext";
 
 const MainNavigation = () => {
   const authContext = useContext(AuthContext);
@@ -11,7 +11,7 @@ const MainNavigation = () => {
 
   const handleLogout = () => {
     authContext.logout();
-    history.push('/auth');
+    history.push("/auth");
   };
 
   return (
@@ -27,6 +27,9 @@ const MainNavigation = () => {
             </li>
           ) : (
             <>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
               <li>
                 <Link to="/profile">Profile</Link>
               </li>
